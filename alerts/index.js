@@ -1,9 +1,7 @@
-'use strict';
-
-const { hexToString } = require('./utils.js');
+const { hexToString } = require('../utils');
 
 const { getDelegatesList, semuxBlockchainDelegatesGet, semuxBlockchainBlockGetLast,
-	semuxBlockchainTransactionsGetByBlockID } = require('./client/extAPIscan.js');
+	semuxBlockchainTransactionsGetByBlockID } = require('../client');
 
 // const PUBLIC_POOLS = require('./config/public-pools.json'); // Список аккаунтов публичных пулов
 const ALIVE_LIST = new Map();
@@ -100,6 +98,7 @@ async function scanNewBlock() {
 		// [!ALERT!] Зарегистрирован новый делегат!
 		case 'DELEGATE':
 			alerts.push({ name: hexToString(tx.data), type: 'delegate' });
+			// TODO^ надо добавить его в список DELEGATE_LIST
 			break;
 		}
 	}

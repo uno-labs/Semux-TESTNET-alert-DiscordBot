@@ -1,5 +1,3 @@
-'use strict';
-
 const { ExtAPI } = require('../config/config-bot.json');
 const rp = require('request-promise');
 

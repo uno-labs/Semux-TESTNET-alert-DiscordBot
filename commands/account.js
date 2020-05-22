@@ -1,6 +1,6 @@
 const { prefix } = require('../config/config-bot.json');
-const { getDelegatesList, semuxBlockchainAddressGet } = require('../client/extAPIscan.js');
-const { compareObjects, numberWithSpaces, numberAlignRight } = require('../utils.js');
+const { getDelegatesList, semuxBlockchainAddressGet } = require('../client');
+const { compareObjects, numberWithSpaces, numberAlignRight } = require('../utils');
 
 module.exports = {
 	name: 'account',

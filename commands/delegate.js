@@ -1,7 +1,5 @@
 const { prefix } = require('../config/config-bot.json');
-const { semuxBlockchainDelegatesGet } = require('../client/extAPIscan.js');
-// const { compareObjects, numberWithSpaces } = require('../utils.js');
-
+const { semuxBlockchainDelegatesGet } = require('../client');
 
 module.exports = {
 	name: 'delegate',

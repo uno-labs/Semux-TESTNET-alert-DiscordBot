@@ -6,10 +6,9 @@ const { prefix, token } = require('./config/config-bot.json');
 const bot = new Discord.Client({ disableEveryone: true });
 bot.commands = new Discord.Collection();
 
+const { scanDelegatesList, scanNewBlock } = require('./alerts');
+const { initialization } = require('./client');
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
-const { scanDelegatesList, scanNewBlock } = require('./alerts.js');
-const { initialization } = require('./client/extAPIscan.js');
-
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	bot.commands.set(command.name, command);
@@ -95,7 +94,7 @@ setInterval(async function() {
 			break;
 		}
 	}
-}, 300 * 1000);
+}, 5 * 60 * 1000);
 
 
 // Сканируем новый блок каждые 15 сек, отслеживаем транзакции в блоке

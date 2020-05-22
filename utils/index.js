@@ -1,5 +1,3 @@
-'use strict';
-
 // Сортировка по голосам от большего к меньшему
 function compareObjects(a, b) {
 	if (a.votes < b.votes) return 1;
