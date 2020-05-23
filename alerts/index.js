@@ -98,7 +98,7 @@ async function scanNewBlock() {
 		// [!ALERT!] Зарегистрирован новый делегат!
 		case 'DELEGATE':
 			alerts.push({ name: hexToString(tx.data), type: 'delegate' });
-			// TODO^ надо добавить его в список DELEGATE_LIST
+			global.DELEGATE_LIST.set(tx.from_addr, hexToString(tx.data));
 			break;
 		}
 	}

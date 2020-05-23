@@ -1,5 +1,5 @@
 const { prefix } = require('../config/config-bot.json');
-const { getDelegatesList, semuxBlockchainAddressGet } = require('../client');
+const { semuxBlockchainAddressGet } = require('../client');
 const { compareObjects, numberWithSpaces, numberAlignRight } = require('../utils');
 
 module.exports = {
@@ -62,7 +62,7 @@ module.exports = {
 
 				for (let i = 0; i < tempList.length; i++) {
 					const votes = numberAlignRight(numberWithSpaces((parseInt(tempList[i].votes, 10) / 1e9).toFixed(2)));
-					const validator = getDelegatesList().get(tempList[i].addr);
+					const validator = global.DELEGATE_LIST.get(tempList[i].addr);
 					data.push(`${votes}   ->   ${validator}`);
 				}
 				data.push('```');
@@ -90,7 +90,7 @@ module.exports = {
 
 				for (let i = 0; i < tempList.length; i++) {
 					const votes = numberWithSpaces((parseInt(tempList[i].votes, 10) / 1e9).toFixed(2));
-					const validator = getDelegatesList().get(tempList[i].addr);
+					const validator = global.DELEGATE_LIST.get(tempList[i].addr);
 					data.push(`${votes}   ->   ${validator}`);
 				}
 				data.push('```');

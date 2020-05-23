@@ -14,6 +14,8 @@ for (const file of commandFiles) {
 	bot.commands.set(command.name, command);
 }
 
+global.DELEGATE_LIST = new Map();
+
 const cooldowns = new Discord.Collection();
 
 bot.once('ready', () => {

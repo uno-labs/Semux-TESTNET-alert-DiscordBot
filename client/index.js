@@ -1,9 +1,6 @@
 const { ExtAPI } = require('../config/config-bot.json');
 const rp = require('request-promise');
 
-const DELEGATE_LIST = new Map();
-
-
 async function initialization() {
 
 	const result = await semuxBlockchainDelegatesGet();
@@ -11,7 +8,7 @@ async function initialization() {
 		return;
 	}
 	for (const delegate of result.data) {
-		DELEGATE_LIST.set(delegate.addr, delegate.name);
+		global.DELEGATE_LIST.set(delegate.addr, delegate.name);
 	}
 }
 
@@ -21,7 +18,10 @@ async function semuxBlockchainAddressGet(account) {
 	const options = {
 		method: 'POST',
 		uri: ExtAPI,
-		body: { 'data' : [ account.slice(-40) ], 'method' : 'semux.blockchain.address.get', 'sid' : '00000000-0000-0000-0000-000000000000', 'ts' : Date.now() }, // объект с данными для сервера
+		body: { 'data' : [ account.slice(-40) ],
+			'method' : 'semux.blockchain.address.get',
+			'sid' : '00000000-0000-0000-0000-000000000000',
+			'ts' : Date.now() }, // объект с данными для сервера
 		headers:{ 'User-Agent': 'Request-Promise' },
 		json: true,
 	};
@@ -83,7 +83,10 @@ async function semuxBlockchainDelegatesGet() {
 	const options = {
 		method: 'POST',
 		uri: ExtAPI,
-		body: { 'data':[], 'method':'semux.blockchain.delegates.get', 'sid':'00000000-0000-0000-0000-000000000000', 'ts':Date.now() }, // объект с данными для сервера
+		body: { 'data':[],
+			'method':'semux.blockchain.delegates.get',
+			'sid':'00000000-0000-0000-0000-000000000000',
+			'ts':Date.now() }, // объект с данными для сервера
 		headers:{ 'User-Agent': 'Request-Promise' },
 		json: true,
 	};
@@ -112,7 +115,10 @@ async function semuxBlockchainBlockGetLast() {
 	const options = {
 		method: 'POST',
 		uri: ExtAPI,
-		body: { 'data':[], 'method':'semux.blockchain.block.get_last', 'sid':'00000000-0000-0000-0000-000000000000', 'ts':Date.now() }, // объект с данными для сервера
+		body: { 'data':[],
+			'method':'semux.blockchain.block.get_last',
+			'sid':'00000000-0000-0000-0000-000000000000',
+			'ts':Date.now() }, // объект с данными для сервера
 		headers:{ 'User-Agent': 'Request-Promise' },
 		json: true,
 	};
@@ -141,7 +147,10 @@ async function semuxBlockchainBlockGetByID(id) {
 	const options = {
 		method: 'POST',
 		uri: ExtAPI,
-		body: { 'data': id, 'method':'semux.blockchain.block.get_by_id', 'sid':'00000000-0000-0000-0000-000000000000', 'ts':Date.now() }, // объект с данными для сервера
+		body: { 'data': id,
+			'method':'semux.blockchain.block.get_by_id',
+			'sid':'00000000-0000-0000-0000-000000000000',
+			'ts':Date.now() }, // объект с данными для сервера
 		headers:{ 'User-Agent': 'Request-Promise' },
 		json: true,
 	};
@@ -165,12 +174,7 @@ async function semuxBlockchainBlockGetByID(id) {
 }
 
 
-function getDelegatesList() {
-	return DELEGATE_LIST;
-}
-
-
 module.exports = {
-	initialization, getDelegatesList, semuxBlockchainAddressGet, semuxBlockchainDelegatesGet, semuxBlockchainBlockGetLast,
+	initialization, semuxBlockchainAddressGet, semuxBlockchainDelegatesGet, semuxBlockchainBlockGetLast,
 	semuxBlockchainTransactionsGetByBlockID, semuxBlockchainBlockGetByID,
 };
