@@ -46,7 +46,7 @@ module.exports = {
 			data.push(`Spendable:     ${spendable} SEM`);
 			data.push(`Locked:        ${locked} SEM\`\`\`\`\`\``);
 			data.push(`Votes:    ${stack} SEM`);
-			data.push(`Position: ${result.data.delegate_pos} of 100`);
+			data.push(`Position: ${result.data.delegate_pos} of 10`);
 			data.push(`Status:   ${result.data.state}`);
 			data.push(`Activity: ${result.data.alive_state}`);
 			if (locked === '0.00') {

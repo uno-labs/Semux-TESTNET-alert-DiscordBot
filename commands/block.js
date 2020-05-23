@@ -1,5 +1,5 @@
 const { prefix } = require('../config/config-bot.json');
-const { semuxBlockchainBlockGetByID, getDelegatesList } = require('../client');
+const { semuxBlockchainBlockGetByID } = require('../client');
 const { numberWithSpaces } = require('../utils');
 
 
@@ -32,7 +32,7 @@ module.exports = {
 		const number = numberWithSpaces(result.data.id);
 		const time = new Date();
 		time.setTime(result.data.timestamp);
-		const validator = getDelegatesList().get(result.data.forged_by_addr_hash);
+		const validator = global.DELEGATE_LIST.get(result.data.forged_by_addr_hash);
 
 		data.push(`\`\`\`Block number: ${number}`);
 		data.push(`Forged by validator: ${validator}`);
